@@ -13,8 +13,10 @@ const {width, height} = Dimensions.get('screen');
 
 const SignUp = props => {
   const {navigation} = props;
-  const [userName, setUserName] = useState(false);
-  const [password, setPassword] = useState(false);
+  const [userName, setUserName] = useState();
+  const [password, setPassword] = useState();
+  const [email, setEmail] = useState();
+  const [isChecked, setIsChecked] = useState(false);
   return (
     <>
       <Header navigation={navigation} />
@@ -29,18 +31,14 @@ const SignUp = props => {
               style={styles.textinput}
               value={userName}
               onChangeText={setUserName}
-              // onFocus={() => onFocused("username")}
-              // onBlur={() => onBlur("username")}
             />
             <Text style={styles.email}>Email Address</Text>
             <TextInput
               placeholder="email"
               autoCapitalize="none"
               style={styles.textinput}
-              // value={userName}
-              // onChangeText={setUserName}
-              // onFocus={() => onFocused("username")}
-              // onBlur={() => onBlur("username")}
+              value={email}
+              onChangeText={setEmail}
             />
             <Text style={styles.email}>Password</Text>
             <TextInput
@@ -52,7 +50,12 @@ const SignUp = props => {
             />
           </View>
           <View style={styles.rem}>
-            <TouchableOpacity style={styles.checkBox}></TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setIsChecked(!isChecked)}
+              style={[
+                styles.checkBox,
+                isChecked ? {backgroundColor: 'black'} : null,
+              ]}></TouchableOpacity>
             <Text style={{fontWeight: '500'}}>
               Agree the <Text style={{color: '#0292EF'}}>terms and policy</Text>
             </Text>

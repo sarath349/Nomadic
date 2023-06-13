@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from 'react-native';
 import Header from '../../common/Header';
 const {width, height} = Dimensions.get('screen');
@@ -48,36 +49,52 @@ const Statement = props => {
     },
   ];
   const {navigation} = props;
-  return (
-    <View style={styles.container}>
-      <Header />
-      {/* Table Header */}
-      <View style={{borderWidth: 0.5, padding: 5}}>
-        <View style={styles.row}>
-          <Text style={styles.headerCell}>Date</Text>
-          <Text style={styles.headerCell}>Amount</Text>
-          <Text style={styles.headerCell}>Type</Text>
-          <Text style={styles.headerCell}>Detail</Text>
-          <Text style={styles.headerCell}>Balance</Text>
-        </View>
 
-        {/* Table Body */}
-        {transactions.map((transaction, index) => (
-          <View key={index} style={styles.row}>
-            <View style={{height: 35}}>
-              <Text style={[styles.cell, {marginRight: 5}]}>
-                {transaction.date}
-              </Text>
-              <Text style={styles.cell}>{transaction.time}</Text>
+  return (
+    <>
+      <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
+        <Header />
+        <View style={styles.container}>
+          {/* Table Header */}
+          <View style={{borderWidth: 0.5, padding: 5}}>
+            <View style={styles.row}>
+              <Text style={styles.headerCell}>Date</Text>
+              <Text style={styles.headerCell}>Amount</Text>
+              <Text style={styles.headerCell}>Type</Text>
+              <Text style={styles.headerCell}>Detail</Text>
+              <Text style={styles.headerCell}>Balance</Text>
             </View>
-            <Text style={styles.cell}>{transaction.amount}</Text>
-            <Text style={styles.cell}>{transaction.type}</Text>
-            <Text style={styles.cell}>{transaction.detail}</Text>
-            <Text style={styles.cell}>{transaction.balance}</Text>
+
+            {/* Table Body */}
+            {transactions.map((transaction, index) => {
+              console.log('index', index);
+              return (
+                <View
+                  key={index}
+                  style={[
+                    styles.row,
+                    {
+                      borderBottomWidth:
+                        index == transactions.length - 1 ? 0 : 1,
+                    },
+                  ]}>
+                  <View style={{height: 35}}>
+                    <Text style={[styles.cell, {marginRight: 5}]}>
+                      {transaction.date}
+                    </Text>
+                    <Text style={styles.cell}>{transaction.time}</Text>
+                  </View>
+                  <Text style={styles.cell}>{transaction?.amount}</Text>
+                  <Text style={styles.cell}>{transaction?.type}</Text>
+                  <Text style={styles.cell}>{transaction?.detail}</Text>
+                  <Text style={[styles.cell]}>{transaction?.balance}</Text>
+                </View>
+              );
+            })}
           </View>
-        ))}
-      </View>
-    </View>
+        </View>
+      </SafeAreaView>
+    </>
   );
 };
 

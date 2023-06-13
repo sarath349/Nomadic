@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -13,6 +13,9 @@ const {width, height} = Dimensions.get('screen');
 
 const Login = props => {
   const {navigation} = props;
+  const [userName, setUserName] = useState();
+  const [password, setPassword] = useState();
+  const [isChecked, setIsChecked] = useState(false);
   return (
     <>
       <Header navigation={navigation} />
@@ -25,24 +28,25 @@ const Login = props => {
               placeholder="Username"
               autoCapitalize="none"
               style={styles.textinput}
-              // value={userName}
-              // onChangeText={setUserName}
-              // onFocus={() => onFocused("username")}
-              // onBlur={() => onBlur("username")}
+              value={userName}
+              onChangeText={setUserName}
             />
             <Text style={styles.email}>Password</Text>
             <TextInput
               placeholder="Password"
               autoCapitalize="none"
               style={styles.textinput}
-              // value={userName}
-              // onChangeText={setUserName}
-              // onFocus={() => onFocused("username")}
-              // onBlur={() => onBlur("username")}
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
           <View style={styles.rem}>
-            <View style={styles.checkBox}></View>
+            <TouchableOpacity
+              onPress={() => setIsChecked(!isChecked)}
+              style={[
+                styles.checkBox,
+                isChecked ? {backgroundColor: 'black'} : null,
+              ]}></TouchableOpacity>
             <Text style={{fontWeight: '500'}}>Remember Me</Text>
           </View>
           <TouchableOpacity

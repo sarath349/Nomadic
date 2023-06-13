@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -13,6 +13,7 @@ const {width, height} = Dimensions.get('screen');
 
 const Withdraw = props => {
   const {navigation} = props;
+  const [amount, setAmount] = useState();
   return (
     <>
       <Header navigation={navigation} />
@@ -25,10 +26,9 @@ const Withdraw = props => {
               placeholder="Enter amount to withdraw"
               autoCapitalize="none"
               style={styles.textinput}
-              // value={userName}
-              // onChangeText={setUserName}
-              // onFocus={() => onFocused("username")}
-              // onBlur={() => onBlur("username")}
+              value={amount}
+              onChangeText={setAmount}
+              keyboardType="number-pad"
             />
           </View>
 

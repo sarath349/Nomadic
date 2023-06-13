@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -13,6 +13,8 @@ const {width, height} = Dimensions.get('screen');
 
 const Transfer = props => {
   const {navigation} = props;
+  const [email, setEmail] = useState();
+  const [amount, setAmount] = useState();
   return (
     <>
       <Header navigation={navigation} />
@@ -25,20 +27,16 @@ const Transfer = props => {
               placeholder="Enter Email"
               autoCapitalize="none"
               style={styles.textinput}
-              // value={userName}
-              // onChangeText={setUserName}
-              // onFocus={() => onFocused("username")}
-              // onBlur={() => onBlur("username")}
+              value={email}
+              onChangeText={setEmail}
             />
             <Text style={styles.email}>Amount</Text>
             <TextInput
               placeholder="Enter amount to Transfer"
               autoCapitalize="none"
               style={styles.textinput}
-              // value={userName}
-              // onChangeText={setUserName}
-              // onFocus={() => onFocused("username")}
-              // onBlur={() => onBlur("username")}
+              value={amount}
+              onChangeText={setAmount}
             />
           </View>
 

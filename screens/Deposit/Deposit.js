@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -13,6 +13,7 @@ const {width, height} = Dimensions.get('screen');
 
 const Deposit = props => {
   const {navigation} = props;
+  const [amount, setAmount] = useState();
   return (
     <>
       <Header navigation={navigation} />
@@ -25,10 +26,9 @@ const Deposit = props => {
               placeholder="Enter amount to deposit"
               autoCapitalize="none"
               style={styles.textinput}
-              // value={userName}
-              // onChangeText={setUserName}
-              // onFocus={() => onFocused("username")}
-              // onBlur={() => onBlur("username")}
+              value={amount}
+              onChangeText={setAmount}
+              keyboardType="number-pad"
             />
           </View>
 
